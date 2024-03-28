@@ -3,9 +3,6 @@
 using Raylib_cs;
 using System;
 using System.Diagnostics;
-//using System.Drawing;
-
-//using System.Drawing;
 using System.Numerics;
 
 namespace MazeGame
