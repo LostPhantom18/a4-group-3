@@ -61,7 +61,10 @@ namespace ConsoleApp1
 
         static void DrawStartScreen()
         {
-            Raylib.DrawText("Press Enter to start", width / 2 - 100, height / 2 - 20, 20, Color.White);
+            Raylib.DrawText("Welcome to the Maze Game!", width / 2 - 150, height / 2 - 50, 20, Color.White);
+            Raylib.DrawText("Use WASD keys to move the ball through the maze.", width / 2 - 220, height / 2 - 20, 20, Color.White);
+            Raylib.DrawText("          Reach the red square to complete each level.", width / 2 - 290, height / 2 + 10, 20, Color.White);
+            Raylib.DrawText("Press Enter to start", width / 2 - 100, height / 2 + 40, 20, Color.White);
         }
 
         static void Update()
