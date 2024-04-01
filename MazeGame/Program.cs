@@ -74,25 +74,29 @@ namespace ConsoleApp1
         {
             Vector2 ballDirection = new Vector2(0, 0);
 
-            if (Raylib.IsKeyDown(KeyboardKey.D))
+            // Check keyboard input for ball movement
+
+            if (Raylib.IsKeyDown(KeyboardKey.D)) //move right
             {
                 ballDirection = new Vector2(1, 0);
             }
-            else if (Raylib.IsKeyDown(KeyboardKey.A))
+            else if (Raylib.IsKeyDown(KeyboardKey.A)) // move left
             {
                 ballDirection = new Vector2(-1, 0);
             }
-            else if (Raylib.IsKeyDown(KeyboardKey.W))
+            else if (Raylib.IsKeyDown(KeyboardKey.W)) // move up
             {
                 ballDirection = new Vector2(0, -1);
             }
-            else if (Raylib.IsKeyDown(KeyboardKey.S))
+            else if (Raylib.IsKeyDown(KeyboardKey.S)) //move down
             {
                 ballDirection = new Vector2(0, 1);
             }
 
+            // Update ball position based on direction and speed
             ballPosition += ballDirection * ballSpeed * Raylib.GetFrameTime();
 
+            // Wrap around the screen if ball reaches the edge
             if (ballPosition.X > width)
                 ballPosition.X = 0;
             else if (ballPosition.X < 0)
@@ -103,6 +107,7 @@ namespace ConsoleApp1
             else if (ballPosition.Y < 0)
                 ballPosition.Y = height;
 
+            //draw the ball
             Raylib.DrawCircle((int)ballPosition.X, (int)ballPosition.Y, ballRadius, Color.Yellow);
 
             // Check for level completion
