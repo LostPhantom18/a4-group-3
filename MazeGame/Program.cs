@@ -1,14 +1,9 @@
-﻿// Created by Jonah, Makayla, Eamon, Sudhan and Param
-// Test
-using Raylib_cs;
+﻿using Raylib_cs;
 using System;
-using System.Diagnostics;
-//using System.Drawing;
 using System.Numerics;
 
-namespace MazeGame
+namespace ConsoleApp1
 {
-
     internal class Program
     {
         // Setup window
@@ -16,67 +11,65 @@ namespace MazeGame
         const int width = 800;
         const int height = 800;
 
+        // Ball variables
+        const int ballRadius = 20;
+        const float ballSpeed = 200f;
+        public static Vector2 ballPosition = new Vector2(width / 2, height / 2);
+
         // Setup drawing
-        public static int startY = 0;
         public static int startX = 400;
+        public static int startY = 0;
         public static int currentX = startX;
         public static int currentY = startY;
         public static int a;
         public static int numOfTilesToMove = 4;
         public static int currentTile = 0;
 
-        // Ball variables
-        const int ballRadius = 20;
-        const float ballSpeed = 200f;
-        public static Vector2 ballPosition = new Vector2(width / 2, height / 2);
-
         // Game completed check variables
         public static bool gameOneCompleted = false;
         public static bool gameTwoCompleted = false;
         public static bool gameThreeCompleted = false;
 
-        static Stopwatch timer = new Stopwatch();
-        static TimeSpan elapsedTime;
         static void Main(string[] args)
         {
             Raylib.InitWindow(width, height, title);
             Raylib.SetTargetFPS(60);
+
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.DarkGreen);
                 Update();
-                //drawTree();
                 Raylib.EndDrawing();
             }
+
             Raylib.CloseWindow();
         }
 
         static void Update()
         {
-
-            //Console.WriteLine("Running game"); // Debug 
-            // Your game code run each frame here
             if (gameOneCompleted == false)
             {
                 drawLevelOne();
                 UpdateBall();
             }
-            else if (gameOneCompleted && gameTwoCompleted == false)
+            else if (gameTwoCompleted == false)
             {
                 drawLevelTwo();
                 UpdateBall();
             }
-            else if (gameOneCompleted && gameTwoCompleted && gameThreeCompleted == false)
+            else if (gameThreeCompleted == false)
             {
                 drawLevelThree();
                 UpdateBall();
             }
+            // Check if all games completed
             if (gameOneCompleted && gameTwoCompleted && gameThreeCompleted)
             {
-                timer.Stop();
+                // Optionally add code here for any actions upon completing all levels
             }
         }
+
         static void UpdateBall()
         {
             Vector2 ballDirection = new Vector2(0, 0);
@@ -111,7 +104,36 @@ namespace MazeGame
                 ballPosition.Y = height;
 
             Raylib.DrawCircle((int)ballPosition.X, (int)ballPosition.Y, ballRadius, Color.Yellow);
+
+            // Check for level completion
+            if (Raylib.CheckCollisionCircleRec(ballPosition, ballRadius, new Rectangle(currentX, currentY, 50, 50)))
+            {
+                if (!gameOneCompleted)
+                {
+                    gameOneCompleted = true;
+                    ResetBall();
+                    return;
+                }
+                else if (!gameTwoCompleted)
+                {
+                    gameTwoCompleted = true;
+                    ResetBall();
+                    return;
+                }
+                else if (!gameThreeCompleted)
+                {
+                    gameThreeCompleted = true;
+                    ResetBall();
+                    return;
+                }
+            }
         }
+
+        static void ResetBall()
+        {
+            ballPosition = new Vector2(startX + 25, startY + 25); // Reset ball position to start
+        }
+
         static void drawLevelOne()
         {
             currentX = startX;
@@ -122,6 +144,7 @@ namespace MazeGame
             goDown();
             drawEnd();
         }
+
         static void drawLevelTwo()
         {
             currentX = startX;
@@ -144,6 +167,7 @@ namespace MazeGame
             goLeft();
             drawEnd();
         }
+
         static void drawLevelThree()
         {
             currentX = startX;
@@ -166,93 +190,51 @@ namespace MazeGame
             goUp();
             drawEnd();
         }
+
         static void drawStart()
         {
             Raylib.DrawRectangle(400, 0, 50, 50, Color.Green);
         }
+
         static void drawEnd()
         {
             Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Red);
         }
+
         static void goRight()
         {
-            while (true) // Go right with path
+            for (int i = 0; i < numOfTilesToMove; i++)
             {
-
-                currentX = currentX + a;
-                currentTile++;
-                if (currentTile > numOfTilesToMove)
-                {
-                    currentTile = 0;
-                    a = 0;
-                    break;
-
-                }
                 currentX += 50;
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Blue);
+                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray);
             }
-            return;
         }
+
         static void goLeft()
         {
-            while (true) // Go left with path
+            for (int i = 0; i < numOfTilesToMove; i++)
             {
-
-                currentX = currentX + a;
-                currentTile++;
-                if (currentTile > numOfTilesToMove)
-                {
-                    currentTile = 0;
-                    a = 0;
-                    break;
-                }
                 currentX -= 50;
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Blue);
+                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray);
             }
-            return;
         }
+
         static void goDown()
         {
-            while (true) // Go down with path
+            for (int i = 0; i < numOfTilesToMove; i++)
             {
-
-                currentY = currentY + a;
-                currentTile++;
-                if (currentTile > numOfTilesToMove)
-                {
-                    currentTile = 0;
-                    a = 0;
-                    break;
-                }
-
                 currentY += 50;
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Blue);
+                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray);
             }
-            return;
         }
+
         static void goUp()
         {
-            while (true) // Go down with path
+            for (int i = 0; i < numOfTilesToMove; i++)
             {
-
-                currentY = currentY + a;
-                currentTile++;
-                if (currentTile > numOfTilesToMove)
-                {
-                    currentTile = 0;
-                    a = 0;
-                    break;
-                }
                 currentY -= 50;
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Blue);
+                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray);
             }
-            return;
-        }
-        static void DrawTimer()
-        {
-            elapsedTime = timer.Elapsed;
-            string timerText = $"Time: {elapsedTime.Minutes:00}:{elapsedTime.Seconds:00}.{elapsedTime.Milliseconds / 10:00}";
-            Raylib.DrawText(timerText, 10, 10, 20, Color.White);
         }
     }
 }
