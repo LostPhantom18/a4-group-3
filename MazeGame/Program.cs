@@ -35,6 +35,19 @@ namespace ConsoleApp1
             Raylib.InitWindow(width, height, title);
             Raylib.SetTargetFPS(60);
 
+            // Display "press Enter to start" screen
+            DrawStartScreen();
+
+            // Wait for Enter key press
+            while (!Raylib.IsKeyDown(KeyboardKey.Enter))
+            {
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(Color.Black);
+                DrawStartScreen();
+                Raylib.EndDrawing();
+            }
+
+            // Start the game loop
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
@@ -44,6 +57,11 @@ namespace ConsoleApp1
             }
 
             Raylib.CloseWindow();
+        }
+
+        static void DrawStartScreen()
+        {
+            Raylib.DrawText("Press Enter to start", width / 2 - 100, height / 2 - 20, 20, Color.White);
         }
 
         static void Update()
