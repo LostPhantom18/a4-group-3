@@ -46,8 +46,6 @@ namespace MazeGame
 
         static void Update()
         {
-
-            //Console.WriteLine("Running game"); // Debug 
             // Your game code run each frame here
             if (gameOneCompleted == false)
             {
@@ -119,10 +117,12 @@ namespace MazeGame
         }
         static void drawStart()
         {
+            // Draws starting square
             Raylib.DrawRectangle(400, 0, 50, 50, Color.Green);
         }
         static void drawEnd()
         {
+            // Draws ending square
             Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Red);
         }
         static void goRight()
