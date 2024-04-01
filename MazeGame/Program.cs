@@ -61,6 +61,7 @@ namespace ConsoleApp1
 
         static void DrawStartScreen()
         {
+            // Your game code run each frame here
             Raylib.DrawText("Welcome to the Maze Game!", width / 2 - 150, height / 2 - 50, 20, Color.White);
             Raylib.DrawText("Use WASD keys to move the ball through the maze.", width / 2 - 220, height / 2 - 20, 20, Color.White);
             Raylib.DrawText("          Reach the red square to complete each level.", width / 2 - 290, height / 2 + 10, 20, Color.White);
@@ -225,12 +226,14 @@ namespace ConsoleApp1
         // Draw start point
         static void drawStart()
         {
+            // Draws starting square
             Raylib.DrawRectangle(400, 0, 50, 50, Color.Green);
         }
 
         // Draw end point
         static void drawEnd()
         {
+            // Draws ending square
             Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Red);
         }
 
