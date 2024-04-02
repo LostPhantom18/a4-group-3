@@ -26,6 +26,9 @@ namespace ConsoleApp1
         public static int numOfTilesToMove = 4;
         public static int currentTile = 0;
 
+        public static int squareWidth = 50;
+        public static int squareHeight = 50;
+
         // Game completed check variables
         public static bool gameOneCompleted = false;
         public static bool gameTwoCompleted = false;
@@ -228,14 +231,14 @@ namespace ConsoleApp1
         static void drawStart()
         {
             // Draws starting square
-            Raylib.DrawRectangle(400, 0, 50, 50, Color.Green);
+            Raylib.DrawRectangle(400, 0, squareWidth, 50, Color.Green);
         }
 
         // Draw end point
         static void drawEnd()
         {
             // Draws ending square
-            Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Red);
+            Raylib.DrawRectangle(currentX, currentY, squareWidth, 50, Color.Red);
         }
 
         // Functions for moving the cursor
@@ -244,7 +247,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentX += 50; // Move right
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -253,7 +256,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentX -= 50; // Move left
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -262,7 +265,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentY += 50; // Move down
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -271,7 +274,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentY -= 50; //Move up
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw title
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw title
             }
         }
     }
