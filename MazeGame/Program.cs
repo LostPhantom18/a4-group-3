@@ -14,6 +14,10 @@ namespace ConsoleApp1
         const int width = 800;
         const int height = 800;
 
+        //2D Textures/ Images
+        public static Texture2D drawBoat;
+        public static Texture2D waterPath;
+
         // Ball variables
         const int ballRadius = 20;
         const float ballSpeed = 200f;
