@@ -40,10 +40,13 @@ namespace ConsoleApp1
         // Timer variabbles
         static Stopwatch timer = new Stopwatch();
         static TimeSpan elapsedTime;
+
+        public static int framerateTarget = 60;
+
         static void Main(string[] args)
         {
             Raylib.InitWindow(width, height, title);
-            Raylib.SetTargetFPS(60);
+            Raylib.SetTargetFPS(framerateTarget);
 
             // Display "press Enter to start" screen
             DrawStartScreen();
