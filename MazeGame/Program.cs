@@ -48,6 +48,17 @@ namespace ConsoleApp1
             // Display "press Enter to start" screen
             DrawStartScreen();
 
+            // Load Textures from files
+            //Boat
+            Image B = Raylib.LoadImage("../../../../Assets/Boat.png");
+            drawBoat = Raylib.LoadTextureFromImage(B);
+            //Raylib.UnloadImage(B);
+            //Water tile
+            Image W = Raylib.LoadImage("../../../../Assets/Water.png");
+            waterPath = Raylib.LoadTextureFromImage(W);
+            //Raylib.UnloadImage(W);
+
+
             // Wait for Enter key press
             while (!Raylib.IsKeyDown(KeyboardKey.Enter))
             {
