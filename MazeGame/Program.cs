@@ -34,7 +34,7 @@ namespace MazeGame
         public static bool gameOneCompleted = false;
         public static bool gameTwoCompleted = false;
         public static bool gameThreeCompleted = false;
-
+        //timer
         static Stopwatch timer = new Stopwatch();
         static TimeSpan elapsedTime;
         static void Main(string[] args)
@@ -77,6 +77,7 @@ namespace MazeGame
                 timer.Stop();
             }
         }
+        //Set the ball to update based on keyboard input.
         static void UpdateBall()
         {
             Vector2 ballDirection = new Vector2(0, 0);
@@ -112,6 +113,7 @@ namespace MazeGame
 
             Raylib.DrawCircle((int)ballPosition.X, (int)ballPosition.Y, ballRadius, Color.Yellow);
         }
+        //Initialize the drawings for all of the levels
         static void drawLevelOne()
         {
             currentX = startX;
@@ -248,6 +250,7 @@ namespace MazeGame
             }
             return;
         }
+        //Draw the timer to keep track of the players playtime.
         static void DrawTimer()
         {
             elapsedTime = timer.Elapsed;
