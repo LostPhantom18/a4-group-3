@@ -1,9 +1,7 @@
 ﻿// Created by Jonah, Makayla, Eamon, Sudhan and Param
-// Test
 using Raylib_cs;
 using System;
 using System.Diagnostics;
-//using System.Drawing;
 using System.Numerics;
 
 namespace MazeGame
