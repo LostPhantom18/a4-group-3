@@ -14,6 +14,7 @@ namespace ConsoleApp1
         // Ball variables
         const int ballRadius = 20;
         const float ballSpeed = 200f;
+        const int speedsensitivty = 1;
         public static Vector2 ballPosition = new Vector2(width / 2, height / 2);
 
         // Setup drawing
@@ -101,19 +102,19 @@ namespace ConsoleApp1
             // Check keyboard input for ball movement
             if (Raylib.IsKeyDown(KeyboardKey.D))
             {
-                ballDirection = new Vector2(1, 0); // Move right
+                ballDirection = new Vector2(speedsensitivty, 0); // Move right
             }
             else if (Raylib.IsKeyDown(KeyboardKey.A))
             {
-                ballDirection = new Vector2(-1, 0); // Move left
+                ballDirection = new Vector2(-speedsensitivty, 0); // Move left
             }
             else if (Raylib.IsKeyDown(KeyboardKey.W))
             {
-                ballDirection = new Vector2(0, -1); // Move up
+                ballDirection = new Vector2(0, -speedsensitivty); // Move up
             }
             else if (Raylib.IsKeyDown(KeyboardKey.S))
             {
-                ballDirection = new Vector2(0, 1); // Move down
+                ballDirection = new Vector2(0, speedsensitivty); // Move down
             }
 
             // Update ball position based on direction and speed
