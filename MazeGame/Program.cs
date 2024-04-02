@@ -91,6 +91,9 @@ namespace ConsoleApp1
 
         static void Update()
         {
+            //Drawing boat onto screen
+            Raylib.DrawTexture(drawBoat, 25, 25, Color.White);
+
             // Update game state
             if (gameOneCompleted == false)
             {
