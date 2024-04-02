@@ -1,5 +1,8 @@
-﻿using Raylib_cs;
+
+﻿// Created by Jonah, Makayla, Eamon, Sudhan and Param
+using Raylib_cs;
 using System;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace ConsoleApp1
@@ -31,6 +34,9 @@ namespace ConsoleApp1
         public static bool gameTwoCompleted = false;
         public static bool gameThreeCompleted = false;
 
+        // Timer variabbles
+        static Stopwatch timer = new Stopwatch();
+        static TimeSpan elapsedTime;
         static void Main(string[] args)
         {
             Raylib.InitWindow(width, height, title);
@@ -273,6 +279,12 @@ namespace ConsoleApp1
                 currentY -= 50; //Move up
                 Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw title
             }
+        }
+        static void DrawTimer()
+        {
+            elapsedTime = timer.Elapsed;
+            string timerText = $"Time: {elapsedTime.Minutes:00}:{elapsedTime.Seconds:00}.{elapsedTime.Milliseconds / 10:00}";
+            Raylib.DrawText(timerText, 10, 10, 20, Color.White);
         }
     }
 }
