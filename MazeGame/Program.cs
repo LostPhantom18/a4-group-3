@@ -17,6 +17,7 @@ namespace ConsoleApp1
         // Ball variables
         const int ballRadius = 20;
         const float ballSpeed = 200f;
+        const int speedsensitivty = 1;
         public static Vector2 ballPosition = new Vector2(width / 2, height / 2);
 
         // Setup drawing
@@ -27,6 +28,9 @@ namespace ConsoleApp1
         public static int a;
         public static int numOfTilesToMove = 4;
         public static int currentTile = 0;
+
+        public static int squareWidth = 50;
+        public static int squareHeight = 50;
 
         // Game completed check variables
         public static bool gameOneCompleted = false;
@@ -107,19 +111,19 @@ namespace ConsoleApp1
             // Check keyboard input for ball movement
             if (Raylib.IsKeyDown(KeyboardKey.D))
             {
-                ballDirection = new Vector2(1, 0); // Move right
+                ballDirection = new Vector2(speedsensitivty, 0); // Move right
             }
             else if (Raylib.IsKeyDown(KeyboardKey.A))
             {
-                ballDirection = new Vector2(-1, 0); // Move left
+                ballDirection = new Vector2(-speedsensitivty, 0); // Move left
             }
             else if (Raylib.IsKeyDown(KeyboardKey.W))
             {
-                ballDirection = new Vector2(0, -1); // Move up
+                ballDirection = new Vector2(0, -speedsensitivty); // Move up
             }
             else if (Raylib.IsKeyDown(KeyboardKey.S))
             {
-                ballDirection = new Vector2(0, 1); // Move down
+                ballDirection = new Vector2(0, speedsensitivty); // Move down
             }
 
             // Update ball position based on direction and speed
@@ -233,14 +237,14 @@ namespace ConsoleApp1
         static void drawStart()
         {
             // Draws starting square
-            Raylib.DrawRectangle(400, 0, 50, 50, Color.Green);
+            Raylib.DrawRectangle(400, 0, squareWidth, 50, Color.Green);
         }
 
         // Draw end point
         static void drawEnd()
         {
             // Draws ending square
-            Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Red);
+            Raylib.DrawRectangle(currentX, currentY, squareWidth, 50, Color.Red);
         }
 
         // Functions for moving the cursor
@@ -249,7 +253,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentX += 50; // Move right
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -258,7 +262,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentX -= 50; // Move left
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -267,7 +271,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentY += 50; // Move down
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw tile
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw tile
             }
         }
 
@@ -276,7 +280,7 @@ namespace ConsoleApp1
             for (int i = 0; i < numOfTilesToMove; i++)
             {
                 currentY -= 50; //Move up
-                Raylib.DrawRectangle(currentX, currentY, 50, 50, Color.Gray); // Draw title
+                Raylib.DrawRectangle(currentX, currentY, squareWidth, squareHeight, Color.Gray); // Draw title
             }
         }
         static void DrawTimer()
